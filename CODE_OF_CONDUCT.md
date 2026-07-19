@@ -1,6 +1,8 @@
 # Code of Conduct
 
-> a mechub project
+> ●───●
+     \        m e c h u b
+  ●───●───●   deterministic decides · the model explains · a human approves
 
 ## Our standard
 Be respectful and constructive. Focus on the work. Assume good faith.
