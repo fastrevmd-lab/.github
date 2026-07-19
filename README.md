@@ -1,6 +1,10 @@
 # .github
 
-> a mechub project
+```
+●───●
+     \        m e c h u b
+  ●───●───●   deterministic decides · the model explains · a human approves
+```
 
 Organization-level **default community health files** for
 [`fastrevmd-lab`](https://github.com/fastrevmd-lab). GitHub applies the files

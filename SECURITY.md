@@ -1,6 +1,10 @@
 # Security Policy
 
-> a mechub project
+```
+●───●
+     \        m e c h u b
+  ●───●───●   deterministic decides · the model explains · a human approves
+```
 
 mechub builds security tooling for people who run firewalls, so we take
 vulnerabilities in our own code seriously.

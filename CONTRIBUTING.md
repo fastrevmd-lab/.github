@@ -1,6 +1,10 @@
 # Contributing
 
-> a mechub project
+```
+●───●
+     \        m e c h u b
+  ●───●───●   deterministic decides · the model explains · a human approves
+```
 
 Thanks for considering a contribution. mechub projects are self-hosted,
 sovereign network-security tools; contributions that keep them minimal,
