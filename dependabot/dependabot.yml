@@ -1,27 +1,67 @@
 # Dependabot configuration template for mechub projects
 #
-# Copy this file to your repository's .github/dependabot.yml and customize
-# the package ecosystems and ignore rules as needed.
+# NOT inherited. Copy this file to your repository's .github/dependabot.yml.
+# See README.md in this directory for why, and for how to verify it went live.
+#
+# Read the two notes below before copying — one ignore is mandatory for any
+# repo consuming mecmcp, and the docker block must be deleted unless the repo
+# actually has a Dockerfile.
 
 version: 2
 updates:
+  # ---------------------------------------------------------------------------
   # Rust dependencies
+  # ---------------------------------------------------------------------------
   - package-ecosystem: "cargo"
     directory: "/"
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 5
-    # Uncomment and customize ignore rules as needed:
-    # ignore:
-    #   - dependency-name: "some-crate-*"
+    # KEEP THIS IGNORE in any repo that depends on the mecmcp crates. All six
+    # mecmcp-family server repos carry it, for the reason below.
+    #
+    # The mecmcp crates are pinned by git tag and moved by hand in a
+    # chore/mecmcp-<version> PR. Dependabot advances the git ref past the tag,
+    # which cargo then refuses ("failed to select a version for the requirement
+    # mecmcp-server = ^0.23.0"), failing the whole cargo run and taking
+    # unrelated crate updates down with it.
+    #
+    # Drop it only in a repo that does not consume mecmcp.
+    ignore:
+      - dependency-name: "mecmcp-*"
 
+  # ---------------------------------------------------------------------------
   # GitHub Actions
+  # ---------------------------------------------------------------------------
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 5
+    # Five of the seven family repos also ignore dtolnay/rust-toolchain. None
+    # of them records why, so it is left commented out here rather than copied
+    # forward as though the reason were established. Add it only if you know
+    # it applies.
+    #
+    # ignore:
+    #   - dependency-name: "dtolnay/rust-toolchain"
 
-  # Docker images (if your repo has a Dockerfile)
+  # ---------------------------------------------------------------------------
+  # Docker images
+  #
+  # DELETE THIS ENTIRE BLOCK unless the repo actually contains a Dockerfile.
+  # Check before copying:
+  #
+  #     git ls-files | grep -i dockerfile
+  #
+  # If that returns nothing, remove the block. An ecosystem pointing at a
+  # directory with no Dockerfile produces no updates and no error — it is
+  # inert config that reads as coverage. mecmcp is deliberately configured
+  # with cargo and github-actions only, for exactly this reason.
+  #
+  # If it does return something, set `directory` to the directory holding the
+  # Dockerfile ("/" when it is at the repo root).
+  # ---------------------------------------------------------------------------
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
