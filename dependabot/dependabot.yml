@@ -1,0 +1,40 @@
+# Dependabot configuration template for mechub projects
+#
+# Copy this file to your repository's .github/dependabot.yml and customize
+# the package ecosystems and ignore rules as needed.
+
+version: 2
+updates:
+  # Rust dependencies
+  - package-ecosystem: "cargo"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    # Uncomment and customize ignore rules as needed:
+    # ignore:
+    #   - dependency-name: "some-crate-*"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  # Docker images (if your repo has a Dockerfile)
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+# For other ecosystems, add sections like:
+#
+#  - package-ecosystem: "npm"
+#    directory: "/"
+#    schedule:
+#      interval: "weekly"
+#
+#  - package-ecosystem: "pip"
+#    directory: "/"
+#    schedule:
+#      interval: "weekly"
